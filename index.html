@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlElement">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="In Loving Memory - Neha Tomar" data-hi="प्रेमपूर्ण स्मृति - नेहा तोमर">In Loving Memory - Neha Tomar</title>
+    <meta name="description" content="A memorial website celebrating the life and memories of Neha Tomar">
+    <base href="/neha-memorial/">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en" aria-label="Switch to English">
+            <span class="lang-text">EN</span>
+        </button>
+        <button class="lang-btn" data-lang="hi" aria-label="हिंदी में बदलें">
+            <span class="lang-text">हिं</span>
+        </button>
+    </div>
+    
+    <div class="visitor-corner-stats" id="visitorCornerStats">
+        <div class="corner-stat">
+            <i class="fas fa-users"></i>
+            <span id="totalVisitors">0</span>
+        </div>
+        <div class="corner-stat">
+            <i class="fas fa-globe"></i>
+            <span id="countriesCount">0</span>
+        </div>
+        <div class="corner-stat">
+            <i class="fas fa-map-marker-alt"></i>
+            <span id="citiesCount">0</span>
+        </div>
+    </div>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-en="In Loving Memory of a Soul Who Touched Us All." data-hi="उस आत्मा की प्रेमपूर्ण स्मृति में जिसने हम सभी को छुआ।">In Loving Memory of a Soul Who Touched Us All.</h1>
+            <h2 class="hero-name">Neha Tomar</h2>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+    <!-- Wavy Divider -->
+    <div class="wavy-divider">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C360 80 1080 0 1440 40V80H0V40Z" fill="#f8f9fa"/></svg>
+    </div>
+    <main>
+        <!-- About Section -->
+        <section class="about-section animate-on-scroll">
+            <div class="container">
+                <h2 data-en="Remembering Neha Tomar" data-hi="नेहा तोमर को याद करते हुए">Remembering Neha Tomar</h2>
+                <p class="about-text" data-en="Neha Tomar brought light into the lives of everyone she met — with her warmth, kindness, and gentle spirit. This memorial website is a small tribute to the love she gave so freely, and the countless memories we hold close in our hearts." data-hi="नेहा तोमर ने अपनी गर्मजोशी, दया और कोमल आत्मा के साथ हर उस व्यक्ति के जीवन में प्रकाश लाया जिससे वह मिलीं। यह स्मारक वेबसाइट उस प्यार के लिए एक छोटी सी श्रद्धांजलि है जो उन्होंने इतनी स्वतंत्रता से दिया, और उन अनगिनत यादों के लिए जिन्हें हम अपने दिलों में संजोए हुए हैं।">
+                    Neha Tomar brought light into the lives of everyone she met — with her warmth, kindness, and gentle spirit. This memorial website is a small tribute to the love she gave so freely, and the countless memories we hold close in our hearts.
+                </p>
+            </div>
+        </section>
+        <!-- Wavy Divider -->
+        <div class="wavy-divider">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C360 80 1080 0 1440 40V80H0V40Z" fill="#fff"/></svg>
+        </div>
+        <!-- Candle Lighting Section -->
+        <section class="candle-section animate-on-scroll">
+            <div class="container">
+                <h2 data-en="Light a Candle" data-hi="एक मोमबत्ती जलाएं">Light a Candle</h2>
+                <p class="section-intro" data-en="Light a virtual candle in memory of Neha. Each candle represents a moment of remembrance and love." data-hi="नेहा की स्मृति में एक आभासी मोमबत्ती जलाएं। प्रत्येक मोमबत्ती स्मरण और प्रेम के एक क्षण का प्रतिनिधित्व करती है।">Light a virtual candle in memory of Neha. Each candle represents a moment of remembrance and love.</p>
+                <div class="candle-area">
+                    <div class="candle-container" id="candleContainer">
+                        <div class="candles-lit-label" id="candlesLitLabel">
+                            <i class="fas fa-fire"></i> <span id="totalCandles">0</span>
+                        </div>
+                        <!-- Candles will be added here dynamically -->
+                    </div>
+                    <div class="fab fab-candle" id="fabCandleLight" title="Light a Candle" aria-label="Light a Candle">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Wavy Divider -->
+        <div class="wavy-divider">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C360 80 1080 0 1440 40V80H0V40Z" fill="#f8f9fa"/></svg>
+        </div>
+        <!-- Photo Gallery -->
+        <section class="gallery-section animate-on-scroll">
+            <div class="container">
+                <h2 data-en="Photo Memories" data-hi="फोटो यादें">Photo Memories</h2>
+                <div class="slideshow-container" id="slideshowContainer">
+                    <div class="slideshow-image-wrapper">
+                        <img id="slideshowImage" src="images/2d6eaf51-e621-47d3-bd3d-56a6b2aedb59.jpg" alt="Memory of Neha Tomar">
+                    </div>
+                    <div class="slideshow-caption" id="slideshowCaption" data-en="A precious memory" data-hi="एक अनमोल याद">A precious memory</div>
+                    <button class="slideshow-arrow left" id="slideshowPrev">&#10094;</button>
+                    <button class="slideshow-arrow right" id="slideshowNext">&#10095;</button>
+                    <div class="fab fab-photo" id="fabPhotoUpload" title="Upload Photo" aria-label="Upload Photo">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Wavy Divider -->
+        <div class="wavy-divider">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C360 80 1080 0 1440 40V80H0V40Z" fill="#fff"/></svg>
+        </div>
+        <!-- Memory Wall Section -->
+        <section class="memory-wall-section animate-on-scroll">
+            <div class="container">
+                <h2 data-en="Memory Wall" data-hi="स्मृति दीवार">Memory Wall</h2>
+                <p class="section-intro" data-en="Share your memories, thoughts, and messages for Neha. Your words will be a lasting tribute to her beautiful spirit." data-hi="नेहा के लिए अपनी यादें, विचार और संदेश साझा करें। आपके शब्द उनकी सुंदर आत्मा के लिए एक स्थायी श्रद्धांजलि होंगे।">Share your memories, thoughts, and messages for Neha. Your words will be a lasting tribute to her beautiful spirit.</p>
+                <div class="memory-slideshow-container" id="memorySlideshowContainer">
+                    <div class="memory-slideshow-content" id="memorySlideshowContent"></div>
+                    <button class="slideshow-arrow left" id="memorySlideshowPrev">&#10094;</button>
+                    <button class="slideshow-arrow right" id="memorySlideshowNext">&#10095;</button>
+                    <div class="fab fab-memory" id="fabMemoryUpload" title="Share Memory" aria-label="Share Memory">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="memory-stats hide-memory-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalMemories">4</span>
+                        <span class="stat-label" data-en="Memories Shared" data-hi="साझा की गई यादें">Memories Shared</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Wavy Divider -->
+        <div class="wavy-divider">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40C360 80 1080 0 1440 40V80H0V40Z" fill="#f8f9fa"/></svg>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal for Photos -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-note" data-en="This memorial website was created with love by family and friends." data-hi="यह स्मारक वेबसाइट परिवार और दोस्तों द्वारा प्यार से बनाई गई है।">This memorial website was created with love by family and friends.</p>
+            <p class="copyright">© 2025 Vaibhav Singh<sup style="font-size:0.7em; vertical-align: super;">&trade;</sup> - All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase Configuration -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+
+    <!-- FABs and Modals for all sections -->
+    <!-- Photo Memories Section -->
+    <div class="modal" id="photoUploadModal" aria-modal="true" role="dialog" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close" id="closePhotoUploadModal">&times;</span>
+            <h3 data-en="Share Your Photo" data-hi="अपनी फोटो साझा करें">Share Your Photo</h3>
+            <form id="photoUploadForm" class="upload-form">
+                <div class="file-input-wrapper">
+                    <input type="file" id="photoFile" accept="image/*" required>
+                    <label for="photoFile" class="file-input-label" data-en="Choose Photo" data-hi="फोटो चुनें">
+                        <i class="fas fa-cloud-upload-alt"></i> <span data-en="Choose Photo" data-hi="फोटो चुनें">Choose Photo</span>
+                    </label>
+                </div>
+                <div class="upload-preview" id="uploadPreview">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button type="button" class="btn-remove" id="removePreview" data-en="Remove" data-hi="हटाएं">Remove</button>
+                </div>
+                <input type="text" id="photoCaption" data-en-placeholder="Photo caption (optional)" data-hi-placeholder="फोटो कैप्शन (वैकल्पिक)" placeholder="Photo caption (optional)">
+                <input type="text" id="photoAuthor" data-en-placeholder="Your name (optional)" data-hi-placeholder="आपका नाम (वैकल्पिक)" placeholder="Your name (optional)">
+                <button type="submit" class="btn-upload">
+                    <i class="fas fa-upload"></i> <span data-en="Upload Photo" data-hi="फोटो अपलोड करें">Upload Photo</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Memory Wall Section -->
+    <div class="modal" id="memoryUploadModal" aria-modal="true" role="dialog" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close" id="closeMemoryUploadModal">&times;</span>
+            <h3 data-en="Share a Memory" data-hi="एक याद साझा करें">Share a Memory</h3>
+            <form id="memoryForm" class="memory-form">
+                <div class="form-row">
+                    <input type="text" id="memoryName" data-en-placeholder="Your name" data-hi-placeholder="आपका नाम" placeholder="Your name" required>
+                    <input type="email" id="memoryEmail" data-en-placeholder="Your email (optional)" data-hi-placeholder="आपका ईमेल (वैकल्पिक)" placeholder="Your email (optional)">
+                </div>
+                <textarea id="memoryMessage" data-en-placeholder="Share your memory, message, or tribute..." data-hi-placeholder="अपनी याद, संदेश या श्रद्धांजलि साझा करें..." placeholder="Share your memory, message, or tribute..." rows="4" required></textarea>
+                <button type="submit" class="btn-add-memory">
+                    <i class="fas fa-heart"></i> <span data-en="Add Memory" data-hi="याद जोड़ें">Add Memory</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Candle Lighting Section -->
+    <div class="modal" id="candleLightModal" aria-modal="true" role="dialog" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close" id="closeCandleLightModal">&times;</span>
+            <h3 data-en="Light a Candle" data-hi="एक मोमबत्ती जलाएं">Light a Candle</h3>
+            <form id="candleForm">
+                <input type="text" id="candleName" data-en-placeholder="Your name" data-hi-placeholder="आपका नाम" placeholder="Your name" required>
+                <textarea id="candleMessage" data-en-placeholder="Your message (optional)" data-hi-placeholder="आपका संदेश (वैकल्पिक)" placeholder="Your message (optional)" rows="3"></textarea>
+                <button type="submit" class="btn-light-candle">
+                    <i class="fas fa-fire"></i> <span data-en="Light Candle" data-hi="मोमबत्ती जलाएं">Light Candle</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Place the FABs and modals just after each slideshow section -->
+</body>
+</html> 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlElement">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Language Test - English" data-hi="भाषा परीक्षण - हिंदी">Language Test - English</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en" aria-label="Switch to English">
+            <span class="lang-text">EN</span>
+        </button>
+        <button class="lang-btn" data-lang="hi" aria-label="हिंदी में बदलें">
+            <span class="lang-text">हिं</span>
+        </button>
+    </div>
+
+    <div style="padding: 100px 20px; text-align: center;">
+        <h1 data-en="Language Switching Test" data-hi="भाषा बदलने का परीक्षण">Language Switching Test</h1>
+        <p data-en="This is a test to verify that language switching works correctly." data-hi="यह एक परीक्षण है जो सुनिश्चित करता है कि भाषा बदलना सही तरीके से काम करता है।">
+            This is a test to verify that language switching works correctly.
+        </p>
+        <p data-en="Click the language buttons in the top right corner to switch languages." data-hi="भाषा बदलने के लिए ऊपर दाईं तरफ के भाषा बटन पर क्लिक करें।">
+            Click the language buttons in the top right corner to switch languages.
+        </p>
+    </div>
+
+    <script>
+        // Language management
+        let currentLanguage = 'en';
+
+        // Language switcher functionality
+        function initLanguageSwitcher() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    if (lang !== currentLanguage) {
+                        switchLanguage(lang);
+                    }
+                });
+            });
+        }
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update HTML lang attribute
+            document.getElementById('htmlElement').setAttribute('lang', lang);
+            
+            // Update language button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all translatable elements
+            updatePageContent(lang);
+        }
+
+        function updatePageContent(lang) {
+            // Update title
+            const titleElement = document.querySelector('title');
+            if (titleElement) {
+                const newTitle = titleElement.getAttribute(`data-${lang}`) || titleElement.textContent;
+                titleElement.textContent = newTitle;
+            }
+            
+            // Update all elements with data attributes
+            const translatableElements = document.querySelectorAll('[data-en][data-hi]');
+            translatableElements.forEach(element => {
+                const newText = element.getAttribute(`data-${lang}`);
+                if (newText) {
+                    element.textContent = newText;
+                }
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguageSwitcher();
+        });
+    </script>
+</body>
+</html> 
