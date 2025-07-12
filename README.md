@@ -131,7 +131,7 @@ memorial-website/
 ## 🌍 Language Features
 
 ### How to Use Language Switching
-1. **Language Switcher**: Located in the top-right corner of the website
+1. **Language Switcher**: Located in the top-left corner of the website
 2. **EN Button**: Switch to English
 3. **हिं Button**: Switch to Hindi
 4. **Persistent**: Your language choice is remembered for future visits

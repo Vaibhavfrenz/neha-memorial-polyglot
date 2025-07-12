@@ -6,7 +6,7 @@ This memorial website has been enhanced with full bilingual support (English & H
 ## 🎯 What Was Implemented
 
 ### 1. Language Switcher UI
-- **Location**: Fixed position in top-right corner
+- **Location**: Fixed position in top-left corner
 - **Design**: Elegant glass-morphism design with hover effects
 - **Buttons**: EN (English) and हिं (Hindi) with active states
 - **Responsive**: Adapts to mobile and tablet screens
@@ -57,7 +57,7 @@ This memorial website has been enhanced with full bilingual support (English & H
 .language-switcher {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
