@@ -1,0 +1,44 @@
+# Firebase Configuration (contains API keys)
+firebase-config.js
+
+# Admin tools directory (contains database management scripts)
+admin-tools/
+
+# Database management scripts (can delete data)
+clear-visitors.js
+clear-visitors-cli.js
+clear-candles.js
+clear-test-data.js
+cleanup-candles.html
+
+# Data viewing scripts
+view-cities.html
+
+# Test files
+test.html
+test-language.html
+
+# Documentation files (may contain sensitive info)
+FIREBASE_SETUP.md
+DEPLOYMENT.md
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 
